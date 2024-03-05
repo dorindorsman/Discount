@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Discount</string>
+    <string name="user_name">Dorin Dorsman</string>
+    <string name="next">Next</string>
 </resources>

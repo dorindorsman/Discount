@@ -10,6 +10,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.discount.welcome.WelcomeView
 import com.example.payplus.ui.DiscountTheme
 
 class MainActivity : ComponentActivity() {
@@ -18,8 +20,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             DiscountTheme {
                 // A surface container using the 'background' color from the theme
+                val navController = rememberNavController()
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    MainNavigation(
+                        modifier = Modifier,
+                        navController = navController
+                    )
                 }
             }
         }
