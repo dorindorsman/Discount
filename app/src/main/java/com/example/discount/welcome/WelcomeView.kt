@@ -1,5 +1,6 @@
 package com.example.discount.welcome
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,11 +11,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -31,15 +32,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.example.discount.R
+import com.example.discount.ui.theme.CnnBlueColor
 
 @Composable
 fun WelcomeView(
     viewModel: WelcomeViewModel
 ) {
-
-    LaunchedEffect(viewModel.time.value) {
-        viewModel.getCurrentDateTime()
-    }
 
     ConstraintLayout(
         modifier = Modifier
@@ -69,8 +67,8 @@ fun WelcomeView(
             Text(
                 text = stringResource(R.string.user_name),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h4,
-                color = Color.Black,
+                style = MaterialTheme.typography.h3,
+                color = CnnBlueColor,
                 modifier = Modifier
                     .fillMaxWidth()
                     .semantics {
@@ -88,26 +86,26 @@ fun WelcomeView(
                         start = parent.start,
                         end = parent.end,
                     )
-                    top.linkTo(nameRow.bottom, 8.dp)
+                    top.linkTo(nameRow.bottom, 30.dp)
                 },
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "Current Date and Time:",
+                text = stringResource(id = R.string.date_time),
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color.Black
+                color = Color.DarkGray
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(
-                text = viewModel.time.value,
+                text = viewModel.time,
                 fontSize = 18.sp,
                 color = Color.Gray
             )
         }
 
-        Row(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 16.dp)
@@ -116,32 +114,45 @@ fun WelcomeView(
                         start = parent.start,
                         end = parent.end,
                     )
-                    top.linkTo(dateTimeColumn.bottom, 8.dp)
+                    top.linkTo(dateTimeColumn.bottom, 16.dp)
                 },
-            horizontalArrangement = Arrangement.Center,
-            verticalAlignment = Alignment.CenterVertically,
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "a",
+                text = stringResource(id = R.string.link),
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.DarkGray
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = viewModel.linkRepository.getLink(),
                 textAlign = TextAlign.Center,
-                style = MaterialTheme.typography.h1,
-                color = Color.Black,
+                style = MaterialTheme.typography.body1,
+                color = CnnBlueColor,
                 modifier = Modifier
                     .fillMaxWidth()
+                    .clickable {
+                        viewModel.handle(WelcomeEvent.WebItemClicked)
+                    }
             )
         }
 
         Button(
-            modifier = Modifier.constrainAs(button) {
-                linkTo(
-                    start = parent.start,
-                    end = parent.end,
-                )
-                top.linkTo(emptyLabelRow.bottom, 8.dp)
+            modifier = Modifier
+                .constrainAs(button) {
+                    linkTo(
+                        end = parent.end,
+                        start = parent.start
+                    )
+                    bottom.linkTo(parent.bottom, 16.dp)
+                },
+            colors = ButtonDefaults.buttonColors(CnnBlueColor),
+            onClick = {
+                viewModel.handle(WelcomeEvent.ContinueClicked)
             },
-            onClick = { },
         ) {
-
             Icon(
                 painter = painterResource(id = R.drawable.arrow_forward),
                 contentDescription = null,
@@ -149,7 +160,6 @@ fun WelcomeView(
                     .size(26.dp)
                     .padding(end = 6.dp)
             )
-
             Text(
                 modifier = Modifier.padding(8.dp),
                 text = stringResource(R.string.next),

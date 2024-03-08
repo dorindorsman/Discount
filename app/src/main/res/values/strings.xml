@@ -1,5 +1,10 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Discount</string>
     <string name="user_name">Dorin Dorsman</string>
-    <string name="next">Next</string>
+    <string name="date_time">Current Date and Time:</string>
+    <string name="next">Continue</string>
+    <string name="tab_travel">Travel</string>
+    <string name="tab_sport_entertainment"><![CDATA[Sport Entertainment]]></string>
+    <string name="eula_filename" tools:ignore="MissingTranslation">eula.html</string>
+    <string name="link">Your Link:</string>
 </resources>

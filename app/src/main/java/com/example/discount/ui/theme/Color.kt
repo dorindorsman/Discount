@@ -1,5 +1,7 @@
-package com.example.payplus.ui
+package com.example.discount.ui.theme
 
+import android.provider.CalendarContract
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 
 val primaryColor = Color(0xFF4FF46B)
@@ -14,3 +16,14 @@ val secondaryTextColor = Color(0xFFFFFFFF)
 val LightGray = Color(0xFFFCFCFC)
 val MediumGray = Color(0xFF9C9C9C)
 val DarkGray = Color(0xFF141414)
+val CnnBlueColor = Color(0xFF0080FF)
+val ScrollBarColor = Color(0xFF3A3E44)
+
+
+val CalendarContract.Colors.CnnBlueColor: Color
+    @Composable
+    get() = CnnBlueColor
+
+val CalendarContract.Colors.ScrollBarColor: Color
+    @Composable
+    get() = ScrollBarColor

@@ -1,4 +1,4 @@
-package com.example.payplus.ui
+package com.example.discount.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme

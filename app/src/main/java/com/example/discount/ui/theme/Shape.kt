@@ -1,4 +1,4 @@
-package com.example.payplus.ui
+package com.example.discount.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes
